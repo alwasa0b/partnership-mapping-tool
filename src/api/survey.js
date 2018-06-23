@@ -11,7 +11,7 @@ export default ({ db }) =>
 
     async index({}, res) {
       const survays = await db.survey.find({}, toRes(res));
-      res.status(200).json(survays);
+      return res.status(200).json(survays);
     },
 
     create({ body }, res) {
