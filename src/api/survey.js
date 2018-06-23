@@ -9,8 +9,9 @@ export default ({ db }) =>
       db.survey.findById(id, next);
     },
 
-    index({}, res) {
-      db.survey.find({}, toRes(res));
+    async index({}, res) {
+      const survays = await db.survey.find({}, toRes(res));
+      res.status(200).json(survays);
     },
 
     create({ body }, res) {
