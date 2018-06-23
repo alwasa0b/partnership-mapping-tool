@@ -7,7 +7,7 @@
     "node": ">= v8.9.0"
   },
   "scripts": {
-    "build": "babel src -s -D -d dist --presets es2015,stage-0",
+    "build": "npm run clean && mkdir -p dist && babel src -s -D -d dist",
     "start": "node dist",
     "prestart": "npm run -s build",
     "test": "eslint src",
