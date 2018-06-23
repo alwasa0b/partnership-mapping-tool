@@ -10,7 +10,7 @@ export default ({ db }) =>
     },
 
     async index({}, res) {
-      const survays = await db.survey.find({}, toRes(res));
+      const survays = await db.survey.find({});
       return res.status(200).json(survays);
     },
 
