@@ -4,7 +4,7 @@
   "description": "Interactive format to plot and analyze collaborative networks",
   "main": "dist",
   "engines": {
-    "node": ">= 7.6.0"
+    "node": "8.9.0"
   },
   "scripts": {
     "build": "babel src -s -D -d dist --presets es2015,stage-0",
