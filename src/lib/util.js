@@ -59,3 +59,15 @@ module.exports.getUid = function(length) {
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+/**
+ * Return a function that returns a date object set to current date plus days.
+ *
+ * @param {Number} days
+ * @return {Function}
+ */
+export const nextDate = days => () => {
+  const date = new Date();
+  date.setDate(date.getDate() + days);
+  return date;
+};

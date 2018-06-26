@@ -2,12 +2,14 @@ import { version } from "../../package.json";
 import { Router } from "express";
 import login from "./login";
 import admin from "./admin";
-var passport = require("passport");
+import passport from "passport";
 
 export default ({ config, db }) => {
   const api = Router();
 
   api.use("/login", login({ config, db }));
+
+  api.use("/user", login({ config, db }));
 
   api.use(
     "/admin",

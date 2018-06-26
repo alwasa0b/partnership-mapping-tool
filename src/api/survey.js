@@ -10,13 +10,22 @@ export default ({ db }) =>
     },
 
     async index({}, res) {
-      const survays = await db.survey.find({});
+      const survays = await db.survey
+        .find({})
+        .populate("targets.questionnaire")
+        .exec();
       res.json(survays);
     },
 
-    create({ body }, res) {
-      const survey = new db.survey({ name: body.name });
-      survey.save(toRes(res));
+    async create(tr, res) {
+      try {
+        const survey = new db.survey(tr.body);
+        const created = await survey.save();
+
+        res.json(created);
+      } catch (error) {
+        res.json(error);
+      }
     },
 
     read({ survey }, res) {
