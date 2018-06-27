@@ -1,6 +1,7 @@
 import { version } from "../../package.json";
 import { Router } from "express";
 import login from "./login";
+import user from "./user";
 import admin from "./admin";
 import passport from "passport";
 
@@ -10,7 +11,7 @@ export default ({ config, db }) => {
   api.use("/login", login({ config, db }));
 
   //todo: comment this out. no need for user creationg at this moment.
-  api.use("/user", login({ config, db }));
+  api.use("/user", user({ config, db }));
 
   api.use(
     "/admin",
