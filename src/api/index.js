@@ -10,7 +10,6 @@ export default ({ config, db }) => {
 
   api.use("/login", login({ config, db }));
 
-  //todo: comment this out. no need for user creationg at this moment.
   // api.use("/user", user({ config, db }));
 
   api.use(
