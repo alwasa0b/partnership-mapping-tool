@@ -12,7 +12,7 @@ const tokenSchema = new mongoose.Schema({
 });
 
 tokenSchema.methods.refresh = function(done) {
-  this.expires = nextDate(30);
+  this.expires = nextDate(30)();
   this.oauth_token = getUid(256);
   this.save();
   done(this);
