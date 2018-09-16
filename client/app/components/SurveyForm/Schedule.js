@@ -11,7 +11,7 @@ import {
   Checkbox,
   Button,
   AutoComplete,
-  DatePicker,
+  //DatePicker,
   InputNumber,
 } from 'antd';
 
@@ -25,9 +25,9 @@ const Schedule = () => {
   };
   return (
     <div>
-      <FormItem label={'Start Date'} {...formItemLayout}>
+      {/* <FormItem label={'Start Date'} {...formItemLayout}>
         <DatePicker.RangePicker placeholder={'Start Date'} />
-      </FormItem>
+      </FormItem> */}
       <FormItem label={'Interval'} {...formItemLayout}>
         <InputNumber placeholder={'Please enter Interval Number'} />
       </FormItem>

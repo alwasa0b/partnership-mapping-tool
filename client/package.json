@@ -250,6 +250,7 @@
   "resolutions": {
     "antd/moment": "2.18.1",
     "rc-calendar/moment": "2.18.1",
-    "rc-time-picker/moment": "2.18.1"
+    "rc-time-picker/moment": "2.18.1",
+    "date-picker/moment": "2.18.1"
   }
 }
