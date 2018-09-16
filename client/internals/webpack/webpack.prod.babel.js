@@ -3,7 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const OfflinePlugin = require('offline-plugin');
-const { HashedModuleIdsPlugin } = require('webpack');
+const { HashedModuleIdsPlugin, ContextReplacementPlugin } = require('webpack');
 
 module.exports = require('./webpack.base.babel')({
   mode: 'production',
@@ -88,6 +88,7 @@ module.exports = require('./webpack.base.babel')({
       hashDigest: 'hex',
       hashDigestLength: 20,
     }),
+    new ContextReplacementPlugin(/\.\/locale$/, 'empty-module', false, /js$/),
   ],
 
   performance: {
