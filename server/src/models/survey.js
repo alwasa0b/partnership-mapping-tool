@@ -1,7 +1,9 @@
 import { Schema } from "mongoose";
 import bucket from "./bucket";
 import target from "./target";
-import { nextDate } from "../lib/util";
+import organization from "./organization";
+
+import schedule from "./schedule";
 
 //todo: validation.
 const survey = Schema(
@@ -11,20 +13,8 @@ const survey = Schema(
       required: true,
       unique: true
     },
-    startingOn: { type: Date, default: Date.now },
-    endingOn: { type: Date, default: nextDate(7) },
-    followUpTimes: {
-      type: Number,
-      required: true
-    },
-    followUpInterval: {
-      type: Number,
-      required: true
-    },
-    followUpUnit: {
-      type: String,
-      enum: ["DAYS", "WEEKS"],
-      required: true
+    schedule: {
+      type: schedule
     },
     message: {
       type: String,
@@ -43,7 +33,7 @@ const survey = Schema(
       }
     },
     organizations: {
-      type: [String],
+      type: [organization],
       required: true,
       validate: {
         validator: v => v.length > 0,
@@ -69,9 +59,15 @@ survey.set("toJSON", {
 survey.pre("save", async function() {
   const doc = this;
   const questionnaireSchema = this.model("Questionnaire");
+  const scheduleSchema = this.model("Schedule");
+  const schedule = new scheduleSchema(doc.schedule);
+  await schedule.save();
+
   await doc.targets.forEach(async target => {
     const questionnaire = new questionnaireSchema({
       questions: doc.organizations,
+      schedule: schedule._id,
+      survey: doc._id,
       answers: doc.buckets.reduce((o, n) => ({ ...o, [n.code]: [] }), {})
     });
     target.questionnaire = questionnaire._id;

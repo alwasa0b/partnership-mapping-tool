@@ -1,7 +1,7 @@
 import resource from "resource-router-middleware";
 import { toRes } from "../lib/util";
 
-export default ({ db }) =>
+export default ({ db, emitter }) =>
   resource({
     id: "survey",
 
@@ -21,6 +21,8 @@ export default ({ db }) =>
       try {
         const survey = new db.survey(tr.body);
         const created = await survey.save();
+
+        emitter.emit("survey.created", created);
 
         res.json(created);
       } catch (error) {

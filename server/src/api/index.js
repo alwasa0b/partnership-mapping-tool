@@ -5,7 +5,7 @@ import login from "./login";
 import admin from "./admin";
 import passport from "passport";
 
-export default ({ config, db }) => {
+export default ({ config, db, emitter }) => {
   const api = Router();
 
   api.use("/login", login({ config, db }));
@@ -15,7 +15,7 @@ export default ({ config, db }) => {
   api.use(
     "/admin",
     passport.authenticate("bearer", { session: false }),
-    admin({ config, db })
+    admin({ config, db, emitter })
   );
 
   api.get("/", (req, res) => {

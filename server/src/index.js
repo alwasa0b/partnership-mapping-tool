@@ -8,9 +8,10 @@ import initializeDb from "./db";
 import middleware from "./middleware";
 import api from "./api";
 import config from "./config.json";
-import email from "./services/email";
+// import services from "./services";
+import { EventEmitter } from "events";
 
-email();
+const emitter = new EventEmitter();
 const app = express();
 app.server = http.createServer(app);
 
@@ -39,10 +40,10 @@ app.use(
 );
 
 initializeDb(db => {
+  // services({ db, emitter });
+
   app.use(middleware({ config, db }));
-
-  app.use("/api", api({ config, db }));
-
+  app.use("/api", api({ config, db, emitter }));
   app.server.listen(process.env.PORT || config.port, () => {
     console.log(`Started on port ${app.server.address().port}`);
   });

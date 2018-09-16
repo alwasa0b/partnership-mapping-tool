@@ -7,5 +7,7 @@ export default new Schema({
     of: [String]
   },
   completed: { type: Boolean, default: false },
-  started: { type: Boolean, default: false }
+  started: { type: Boolean, default: false },
+  survey: { type: Schema.ObjectId, ref: "Survey" },
+  schedule: { type: Schema.ObjectId, ref: "Schedule" }
 });
