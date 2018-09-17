@@ -3,11 +3,12 @@ language: node_js
 node_js:
   - "stable"
 cache:
+  yarn: true
   directories:
-  - node_modules
+    - node_modules
 script:
-  - npm install
-  - npm run build
+  - yarn
+  - yarn build
 deploy:
   provider: pages
   skip_cleanup: true
