@@ -38,7 +38,7 @@ import './global-styles';
 
 // Create redux store with history
 const initialState = {};
-const history = createHistory({ basename: '/partnership-mapping-tool/' });
+const history = createHistory({ basename: process.env.PUBLIC_PATH || '/' });
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 
