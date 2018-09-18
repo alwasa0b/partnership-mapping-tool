@@ -19,7 +19,8 @@ app.use(morgan("dev"));
 
 app.use(
   cors({
-    exposedHeaders: config.corsHeaders
+    exposedHeaders: config.corsHeaders,
+    origin: config.ghPages
   })
 );
 
