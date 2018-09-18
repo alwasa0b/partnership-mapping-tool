@@ -13,19 +13,24 @@
 
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-
 import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import SurveyList from 'containers/SurveyList';
 import SurveyFormContainer from 'containers/SurveyForm';
+import Login from 'containers/Login';
+import PrivateRoute from 'containers/PrivateRoute';
 
 export default function App() {
   return (
     <div>
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route path="/surveylist" component={SurveyList} />
-        <Route path="/create_survey_form/:id" component={SurveyFormContainer} />
+        <Route path="/login" component={Login} />
+        <PrivateRoute path="/surveylist" component={SurveyList} />
+        <PrivateRoute
+          path="/create_survey_form/:id"
+          component={SurveyFormContainer}
+        />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

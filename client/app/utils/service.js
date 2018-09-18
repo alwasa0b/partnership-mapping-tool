@@ -13,3 +13,12 @@ export const post = async (url, data) => {
   const survey = await axios.post(url, data);
   return survey;
 };
+
+export const authenticate = async (url, data) => {
+  const login = await axios.post(url, { ...data, grant_type: 'password' });
+  axios.defaults.headers.common.Authorization = `${login.data.token_type} ${
+    login.data.access_token.oauth_token
+  }`;
+
+  return `${login.data.token_type} ${login.data.access_token.oauth_token}`;
+};
