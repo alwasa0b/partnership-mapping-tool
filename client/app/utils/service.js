@@ -3,8 +3,6 @@ import token from './.token';
 
 axios.defaults.baseURL = process.env.API_PATH || 'http://localhost:8081';
 axios.defaults.headers.common.Authorization = token;
-axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 
 axios.defaults.crossDomain = true;
 
